@@ -93,7 +93,6 @@ int main(void)
   /* USER CODE BEGIN 2 */
     lcd_init();
     lcd_set_cursor(0, 0);
-    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6 | GPIO_PIN_7 | GPIO_PIN_9 | GPIO_PIN_10 | GPIO_PIN_11 | GPIO_PIN_12, GPIO_PIN_SET);
   /* USER CODE END 2 */
 
   /* Infinite loop */
