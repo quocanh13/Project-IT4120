@@ -252,7 +252,38 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
+{
+    switch (GPIO_Pin)
+    {
+        case GPIO_PIN_2: 
+            HAL_GPIO_WritePin(GPIOA, GPIO_PIN_9, GPIO_PIN_SET);
+            break;
 
+        case GPIO_PIN_3: 
+            HAL_GPIO_WritePin(GPIOA, GPIO_PIN_10, GPIO_PIN_SET);
+            break;
+
+        case GPIO_PIN_4: 
+            HAL_GPIO_WritePin(GPIOA, GPIO_PIN_11, GPIO_PIN_SET);
+            break;
+
+        case GPIO_PIN_5: 
+            HAL_GPIO_WritePin(GPIOA, GPIO_PIN_12, GPIO_PIN_SET);
+            break;
+
+        case GPIO_PIN_6: 
+            HAL_GPIO_WritePin(GPIOA, GPIO_PIN_13, GPIO_PIN_SET);
+            break;
+
+        case GPIO_PIN_7: 
+            HAL_GPIO_WritePin(GPIOA, GPIO_PIN_14, GPIO_PIN_SET);
+            break;
+
+        default:
+            break;
+    }
+}
 /* USER CODE END 4 */
 
 /**
