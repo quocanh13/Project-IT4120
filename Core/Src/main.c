@@ -22,8 +22,11 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include <stdio.h>
+#include <stdlib.h>
 #include "lcd.h"
-#include "game_random.h"
+#include "game.h"
+#include "button.h"
+#include "led.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -120,7 +123,9 @@ int main(void)
   /* USER CODE BEGIN 2 */
     lcd_init();
     lcd_set_cursor(0, 0);
-    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6 | GPIO_PIN_7 | GPIO_PIN_9 | GPIO_PIN_10 | GPIO_PIN_11 | GPIO_PIN_12, GPIO_PIN_SET);
+    reset_state();
+    lcd_print(atoi(get_score()));
+    rand_led(1);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -130,17 +135,6 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-
-    uint8_t pos = random_position();
-    turn_on_led(pos);
-    button_pressed = 0;
-
-    char buf[17];
-    lcd_set_cursor(0, 0);
-    sprintf(buf, "LED: %d  Sc: %d", pos + 1, score);
-    lcd_print(buf);
-
-    HAL_Delay(2000);
   }
   /* USER CODE END 3 */
 }
@@ -293,22 +287,7 @@ static void MX_GPIO_Init(void)
 /* USER CODE BEGIN 4 */
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
-    for (int i = 0; i < 6; i++)
-    {
-        if (GPIO_Pin == btn_pins[i])
-        {
-            pressed_position = i;
-            button_pressed = 1;
-
-            if (i == active_led)
-            {
-                HAL_GPIO_WritePin(GPIOA, led_pins[i], GPIO_PIN_RESET);
-                score++;
-                active_led = -1;
-            }
-            break;
-        }
-    }
+    handle_press_button(GPIO_Pin);
 }
 /* USER CODE END 4 */
 
