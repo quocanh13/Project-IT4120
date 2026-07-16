@@ -27,7 +27,7 @@ Core/Src/random.o: ../Core/Src/random.c ../Core/Inc/random.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c_ex.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h \
- ../Core/Inc/main.h
+ ../Core/Inc/lcd.h ../Core/Inc/game.h
 ../Core/Inc/random.h:
 ../Core/Inc/led.h:
 ../Core/Inc/main.h:
@@ -58,4 +58,5 @@ Core/Src/random.o: ../Core/Src/random.c ../Core/Inc/random.h \
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c_ex.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h:
-../Core/Inc/main.h:
+../Core/Inc/lcd.h:
+../Core/Inc/game.h:

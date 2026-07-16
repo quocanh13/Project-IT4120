@@ -26,6 +26,7 @@
 #include "game.h"
 #include "button.h"
 #include "led.h"
+#include "random.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -99,8 +100,10 @@ int main(void)
     lcd_set_cursor(0, 0);
     reset_state();
     lcd_print("0");
-    // rand_led(1);
-    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6 | GPIO_PIN_7 | GPIO_PIN_9 | GPIO_PIN_10 | GPIO_PIN_11 | GPIO_PIN_12, GPIO_PIN_SET);
+    rand_led(1);  // Bật 1 đèn ngẫu nhiên đầu tiên
+
+    uint32_t last_round_time = HAL_GetTick();
+    uint32_t round_timeout = 3000;  // Độ khó (ms): 3000 = dễ, 1000 = khó
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -110,6 +113,14 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+
+    /* Hết thời gian → chuyển lượt mới */
+    if (HAL_GetTick() - last_round_time >= round_timeout)
+    {
+        next_round();
+        last_round_time = HAL_GetTick();
+    }
+
   }
   /* USER CODE END 3 */
 }
@@ -265,7 +276,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
     uint32_t current_time = HAL_GetTick();
     if (current_time - last_button_time > 200) {
-            press_button(GPIO_Pin); 
+            handle_press_button(GPIO_Pin); 
         last_button_time = current_time; 
     }
 }
