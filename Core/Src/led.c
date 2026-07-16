@@ -47,10 +47,12 @@ void random_led(){
 void start_random_led(){
     random_count = 0;
     is_start = 1;
+    turn_off_all_leds();
 }
 
 void stop_random_led(){
     is_start = 0;
+    turn_off_all_leds();
 }
 
 void next_random_led(unsigned int level){
