@@ -3,13 +3,10 @@
 #include "lcd.h"
 
 unsigned int score = 0;
-volatile uint8_t score_updated = 0;
 
 void reset_state(){
     score = 0;
-    for(int i = 0; i < 6; i++){
-        turn_off_all_leds();
-    }
+    turn_off_all_leds();
 }
 
 unsigned int get_score(){
@@ -25,5 +22,9 @@ void press_button(uint8_t button){
         if(score > 0) 
             score--;
     }
-    score_updated = 1;
+    char s[20];
+
+    lcd_set_cursor(0, 0);
+    sprintf(s, "%i %i %i", button, led_state, score);
+    lcd_print(s);
 }
