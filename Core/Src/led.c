@@ -1,4 +1,5 @@
 #include "led.h"
+#include "lcd.h"
 
 const uint16_t LED[] = {LED_1, LED_2, LED_3, LED_4, LED_5, LED_6};
 uint32_t prev_time = 0;
@@ -23,22 +24,22 @@ uint8_t get_led(uint8_t led_index){
 }
 
 uint8_t random_position(){
-    uint32_t seed;
-    seed ^= HAL_GetTick();
-    uint8_t index = (seed >> 16) % 6;
+    uint32_t seed = HAL_GetTick();
+    uint8_t index = seed % 6;
     return index;
 }
 
 void random_led(){
     uint8_t index = random_position();
     set_led(index, 1);
+    char s[20];
 }
 
 void next_random_led(){
     uint32_t cur_time = HAL_GetTick();
     if(cur_time - prev_time > 2000){
         for(int i = 0; i < 3; i++)
-        random_led();
+            random_led();
+        prev_time = cur_time;
     }
-    prev_time = cur_time;
 }

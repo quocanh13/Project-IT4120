@@ -100,7 +100,6 @@ int main(void)
     reset_state();
     lcd_print("0");
 
-    uint32_t round_timeout = 3000;
   /* USER CODE END 2 */
 
   /* Infinite loop */
