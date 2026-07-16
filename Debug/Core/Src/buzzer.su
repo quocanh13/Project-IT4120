@@ -1,0 +1,9 @@
+../Core/Src/buzzer.c:3:6:buzzer_init	8	static
+../Core/Src/buzzer.c:8:6:buzzer_stop	4	static
+../Core/Src/buzzer.c:13:13:set_frequency	32	static
+../Core/Src/buzzer.c:28:6:buzzer_play_tone	16	static
+../Core/Src/buzzer.c:34:6:buzzer_play_melody	24	static
+../Core/Src/buzzer.c:56:6:sound_game_start	8	static
+../Core/Src/buzzer.c:63:6:sound_game_end	8	static
+../Core/Src/buzzer.c:70:6:sound_hit	8	static
+../Core/Src/buzzer.c:75:6:sound_miss	8	static

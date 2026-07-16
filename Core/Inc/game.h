@@ -7,5 +7,6 @@
 unsigned int get_score();               // Hàm lấy điểm số hiện tại
 void reset_state();                     // Hàm reset trạng thái điểm và led
 void press_button(uint8_t button);      // Hàm xử lý sự kiện nhấn button
+extern volatile uint8_t pending_sound;
 
 #endif  
