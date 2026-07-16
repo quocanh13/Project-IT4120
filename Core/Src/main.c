@@ -22,7 +22,6 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include <stdio.h>
-#include <stdlib.h>
 #include "lcd.h"
 #include "game.h"
 #include "button.h"
@@ -108,7 +107,7 @@ int main(void)
     lcd_init();
     lcd_set_cursor(0, 0);
     reset_state();
-    lcd_print(atoi(get_score()));
+    lcd_print("0");
     rand_led(1);
   /* USER CODE END 2 */
 
