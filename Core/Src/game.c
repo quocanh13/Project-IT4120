@@ -2,9 +2,11 @@
 #include "led.h"
 #include "lcd.h"
 #include "buzzer.h"
+#include "led.h"
 
 unsigned int score = 0;
 volatile uint8_t pending_sound = 0;
+uint8_t level = 0;
 
 void reset_state(){
     score = 0;
@@ -17,6 +19,8 @@ unsigned int get_score(){
 }
 
 void press_button(uint8_t button){
+    if(!is_start)
+        return;
     uint8_t led_state = get_led(button);
     if(led_state){
         set_led(button, 0);
@@ -29,10 +33,26 @@ void press_button(uint8_t button){
     }
     char s[20];
 
-    lcd_set_cursor(0, 0);
-    lcd_print("                         ");
-    
-    lcd_set_cursor(0, 0);
-    sprintf(s, "%i %i %i", button, led_state, score);
-    lcd_print(s);
+    lcd_print_game(level, score);
+}
+
+void press_level_up_button(){
+    level += 1;
+    score = 0;
+    stop_random_led();
+    lcd_print_game(level, score);
+}
+
+void press_level_down_button(){
+    if(level > 0)
+        level--;
+    score = 0;
+    stop_random_led();
+    lcd_print_game(level, score);
+}
+
+void press_start_button(){
+    score = 0;
+    lcd_print_game(level, score);
+    start_random_led();
 }
