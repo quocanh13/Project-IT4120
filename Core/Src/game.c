@@ -20,13 +20,10 @@ void press_button(uint8_t button){
     if(led_state){
         set_led(button, 0);
         score++;
-        lcd_clear();
-        lcd_set_cursor(0, 0);
-        char s[20];
-        sprintf(s, "%i", score);
-        lcd_print(s);
-
     } else {
         score--;
     }
+    char s[20];
+    sprintf(s, "%i", score);
+    lcd_print(s);
 }
