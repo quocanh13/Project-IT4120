@@ -1,8 +1,12 @@
 #include "led.h"
 #include "lcd.h"
+#include <math.h>
 
 const uint16_t LED[] = {LED_1, LED_2, LED_3, LED_4, LED_5, LED_6};
+const MAX_RANDOM_COUNT = 20;
 uint32_t prev_time = 0;
+uint8_t is_start = 0;
+uint8_t random_count = 0;
 
 void set_led(uint8_t led_index, uint8_t state){
     if (state)
@@ -41,12 +45,28 @@ void random_led(){
     char s[20];
 }
 
-void next_random_led(){
+void start_random_led(){
+    random_count = 0;
+    is_start = 1;
+}
+
+void stop_random_led(){
+    is_start = 0;
+}
+
+void next_random_led(unsigned int level){
+    if(!is_start) 
+        return;
+
     uint32_t cur_time = HAL_GetTick();
-    if(cur_time - prev_time > 2000){
+    float interval = 5000.0 / pow(1.1, level);
+    if(cur_time - prev_time > interval){
         turn_off_all_leds();
         for(int i = 0; i < 3; i++)
             random_led();
         prev_time = cur_time;
+        random_count++;
+        if(random_count >= MAX_RANDOM_COUNT)
+            is_start = 0;
     }
 }
