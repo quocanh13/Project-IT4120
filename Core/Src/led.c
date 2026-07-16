@@ -31,7 +31,7 @@ void turn_on_led(uint8_t pos)
 }
 
 uint8_t get_led(uint16_t led){
-
+	return HAL_GPIO_ReadPin(LED_PORT, led);
 }
 
 void rand_led(unsigned int level){
