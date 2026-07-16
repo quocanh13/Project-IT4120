@@ -1,11 +1,13 @@
+#include <stdio.h>
 #include "led.h"
+#include "lcd.h"
 
 unsigned int score = 0;
 
 void reset_state(){
     score = 0;
     for(int i = 0; i < 6; i++){
-        set_led(LED[i], 0);
+        turn_off_all_leds();
     }
 }
 
@@ -14,10 +16,16 @@ void get_score(){
 }
 
 void press_button(uint8_t button){
-    uint8_t led_state = get_led(LED[button]);
+    uint8_t led_state = get_led(button);
     if(led_state){
-        set_led(LED[button], 0);
+        set_led(button, 0);
         score++;
+        lcd_clear();
+        lcd_set_cursor(0, 0);
+        char s[20];
+        sprintf(s, "%i", score);
+        lcd_print(s);
+
     } else {
         score--;
     }
