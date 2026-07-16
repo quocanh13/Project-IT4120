@@ -99,7 +99,6 @@ int main(void)
     lcd_set_cursor(0, 0);
     reset_state();
     lcd_print("0");
-    rand_led(1);  
 
     uint32_t round_timeout = 3000;
   /* USER CODE END 2 */
@@ -111,9 +110,7 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-
-    game_loop(round_timeout); // Hàm chứa toàn bộ logic chuyển lượt
-
+    next_random_led();
   }
   /* USER CODE END 3 */
 }
