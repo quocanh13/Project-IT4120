@@ -13,6 +13,10 @@
 #define BUTTON_5 GPIO_PIN_6
 #define BUTTON_6 GPIO_PIN_7
 
+#define LEVEL_UP_BUTTON GPIO_PIN_0
+#define LEVEL_DOWN_BUTTON GPIO_PIN_1
+#define START_BUTTON GPIO_PIN_9
+
 void handle_press_button(uint16_t pin);
 
 #endif

@@ -8,5 +8,12 @@ void handle_press_button(uint16_t pin){
         if(!(BUTTON[i] == pin)) continue;
         press_button(i);
     }
+
+    if(pin == LEVEL_UP_BUTTON)
+        press_level_up_button();
+    if(pin == LEVEL_DOWN_BUTTON)
+        press_level_down_button();
+    if(pin == START_BUTTON)
+        press_start_button();
 }
 
